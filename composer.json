@@ -1,0 +1,44 @@
+{
+    "name": "dasprid/local-date-time",
+    "description": "Local date and time implementation",
+    "type": "library",
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Ben Scholzen (DASPRiD)",
+            "email": "mail@dasprids.de"
+        }
+    ],
+    "require": {
+        "php": "~7.1"
+    },
+    "require-dev": {
+        "ext-intl": "^1.1",
+        "doctrine/dbal": "^2.9",
+        "phpunit/phpunit": "^8.0",
+        "squizlabs/php_codesniffer": "^3.4"
+    },
+    "suggest": {
+        "ext-intl": "For using the IntlLocalDateFormatter",
+        "doctrine/dbal": "For using the Doctrine types"
+    },
+    "autoload": {
+        "psr-4": {
+            "DASPRiD\\LocalDateTime\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "coveralls": "coveralls",
+        "cs": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-clover clover.xml"
+    }
+}
