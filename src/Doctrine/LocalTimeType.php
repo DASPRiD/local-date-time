@@ -47,4 +47,9 @@ final class LocalTimeType extends TimeType
             );
         }
     }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }

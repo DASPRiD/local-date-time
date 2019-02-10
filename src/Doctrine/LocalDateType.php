@@ -47,4 +47,9 @@ final class LocalDateType extends DateType
             );
         }
     }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }
