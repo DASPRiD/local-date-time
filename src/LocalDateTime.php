@@ -11,6 +11,7 @@ use DASPRiD\LocalDateTime\Temporal\FormatTrait;
 use DASPRiD\LocalDateTime\Temporal\ModificationTrait;
 use DASPRiD\LocalDateTime\Temporal\TemporalInterface;
 use DASPRiD\LocalDateTime\Temporal\TimeGetterTrait;
+use DateTimeZone;
 use Serializable;
 
 final class LocalDateTime implements TemporalInterface, Serializable
@@ -55,9 +56,12 @@ final class LocalDateTime implements TemporalInterface, Serializable
     /**
      * Creates a new LocalDateTime from the current system time.
      */
-    public static function createFromNow() : self
+    public static function createFromNow(?DateTimeZone $timeZone = null) : self
     {
-        return self::createFromFormat('Y-m-d\\TH:i:s', date('Y-m-d\\TH:i:s'));
+        return self::createFromFormat(
+            'Y-m-d\\TH:i:s',
+            (new DateTimeImmutable('now', $timeZone))->format('Y-m-d\\TH:i:s')
+        );
     }
 
     /**

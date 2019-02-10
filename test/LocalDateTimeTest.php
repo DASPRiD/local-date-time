@@ -8,6 +8,7 @@ use DASPRiD\LocalDateTime\LocalDateTime;
 use DASPRiD\LocalDateTime\LocalTime;
 use DateInterval;
 use DateTimeImmutable;
+use DateTimeZone;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
@@ -26,6 +27,14 @@ final class LocalDateTimeTimeTest extends TestCase
 
         self::assertGreaterThanOrEqual($before, (string) $date);
         self::assertLessThanOrEqual($after, (string) $date);
+    }
+
+    public function testCreateFromNowWithTimeZone() : void
+    {
+        $earlierDate = LocalDateTime::createFromNow(new DateTimeZone('Etc/GMT+12'));
+        $laterDate = LocalDateTime::createFromNow(new DateTimeZone('Etc/GMT+11'));
+
+        $this->assertSame((string) $earlierDate->modify('+1 hour'), (string) $laterDate);
     }
 
     public function testCreateFromDateTime() : void

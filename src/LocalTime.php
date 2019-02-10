@@ -51,9 +51,9 @@ final class LocalTime implements TemporalInterface, Serializable
     /**
      * Creates a new LocalTime from the current system time.
      */
-    public static function createFromNow() : self
+    public static function createFromNow(?DateTimeZone $timeZone = null) : self
     {
-        return self::createFromFormat('H:i:s', date('H:i:s'));
+        return self::createFromFormat('H:i:s', (new DateTimeImmutable('now', $timeZone))->format('H:i:s'));
     }
 
     /**
